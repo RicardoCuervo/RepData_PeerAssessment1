@@ -15,7 +15,7 @@ datos$date <- as.Date(datos$date)
 
 A continuacion veremos cual es el total de pasos tomados por dia y su media
 ## What is mean total number of steps taken per day?
-```{r histograma, fig.height=4,fig.width=4}
+```{r histograma, fig.height=5,fig.width=4}
 totalpasos <- tapply(datos$steps, datos$date, sum)
 head(totalpasos)
 hist(totalpasos)
@@ -32,7 +32,7 @@ mediana1
 
 ## What is the average daily activity pattern?
 
-```{r promintervalo, fig.height=4,fig.width=4}
+```{r promintervalo, fig.height=5,fig.width=4}
 pasos_tiempo <- tapply(datos$steps, datos$interval, mean, na.rm = TRUE)
 plot(x= names(pasos_tiempo),y=pasos_tiempo, type = "l", xlab = "Time", ylab = "Steps")
 ```
@@ -55,7 +55,7 @@ sum(is.na(datos$steps))
 
 Para imputar los datos entonces tomaremos la media de los datos y se la asignaremos a los faltantes
 
-```{r fig.height=4,fig.width=4}
+```{r fig.height=5,fig.width=5}
 datos2 <- datos
 datos2$steps[which(is.na(datos2$steps))] <- mean(datos2$steps, na.rm = TRUE)
 totalpasos2 <- tapply(datos2$steps, datos2$date, sum)
@@ -86,7 +86,7 @@ datos2$dias[which(datos2$dias!="weekend")] <- "weekday"
 
 Ahora veremos si hay diferencia en la tendencia
 
-```{r fig.height=4,fig.width=10}
+```{r fig.height=4,fig.width=8}
 
 week <- datos2[datos2$dias=="weekday", ]
 weekend <- datos2[datos2$dias=="weekend", ]
